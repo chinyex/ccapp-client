@@ -1,6 +1,7 @@
+import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
-import { SidebarItemType } from "@/types/sidebar";
+import type { SidebarItemType } from "@/types/sidebar";
 
 type SidebarItemProps = {
   item: SidebarItemType;
@@ -12,21 +13,25 @@ export default function SidebarItem({
   const Icon = item.icon;
 
   return (
-    <button
+    <Link
+      href={item.href}
       className="
         group
+        relative
+        mb-1
         flex
-        w-full
         items-center
         justify-between
         rounded-2xl
         px-4
         py-3
         transition-all
-        duration-200
-        hover:bg-slate-100
+        duration-300
+        hover:bg-slate-50
+        hover:shadow-sm
       "
     >
+      {/* Left */}
       <div className="flex items-center gap-4">
         <div
           className="
@@ -38,29 +43,60 @@ export default function SidebarItem({
             rounded-xl
             bg-blue-50
             text-blue-600
-            transition
+            transition-all
+            duration-300
+            group-hover:scale-110
             group-hover:bg-blue-600
             group-hover:text-white
           "
         >
-          <Icon size={22} />
+          <Icon size={21} />
         </div>
 
-        <span className="text-[15px] font-semibold text-slate-900">
+        <span
+          className="
+            text-[15px]
+            font-semibold
+            tracking-tight
+            text-slate-900
+            transition-colors
+            duration-300
+            group-hover:text-blue-600
+          "
+        >
           {item.title}
         </span>
       </div>
 
+      {/* Arrow */}
       <ChevronRight
         size={18}
         className="
           text-slate-400
           opacity-0
-          transition
+          transition-all
+          duration-300
           group-hover:translate-x-1
           group-hover:opacity-100
         "
       />
-    </button>
+
+      {/* Hover Accent */}
+      <div
+        className="
+          absolute
+          left-0
+          top-3
+          h-8
+          w-1
+          rounded-r-full
+          bg-blue-600
+          opacity-0
+          transition-all
+          duration-300
+          group-hover:opacity-100
+        "
+      />
+    </Link>
   );
 }

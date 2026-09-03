@@ -8,24 +8,65 @@ type AppLayoutProps = {
   children: ReactNode;
 };
 
-export default function AppLayout({ children }: AppLayoutProps) {
+export default function AppLayout({
+  children,
+}: AppLayoutProps) {
   return (
-    <div className="min-h-screen bg-slate-100">
+    <div className="min-h-screen bg-slate-50">
+      {/* Navbar */}
       <AppNavbar />
 
-      <main className="mx-auto flex max-w-7xl gap-6 px-4 py-6">
+      <main
+        className="
+          mx-auto
+          flex
+          w-full
+          max-w-7xl
+          gap-8
+          px-4
+          pb-8
+          pt-24
+        "
+      >
         {/* Left Sidebar */}
-        <div className="hidden lg:block">
-          <LeftSidebar />
-        </div>
+        <aside
+          className="
+            hidden
+            lg:block
+            w-72
+            shrink-0
+          "
+        >
+          <div className="sticky top-24">
+            <LeftSidebar />
+          </div>
+        </aside>
 
         {/* Feed */}
-        <section className="min-w-0 flex-1 lg:max-w-2xl">{children}</section>
+        <section
+          className="
+            w-full
+            max-w-2xl
+            flex-1
+            min-w-0
+          "
+        >
+          {children}
+        </section>
 
         {/* Right Sidebar */}
-        <div className="hidden lg:block">
-          <RightSidebar />
-        </div>
+        <aside
+          className="
+            hidden
+            lg:block
+            w-80
+            shrink-0
+          "
+        >
+          <div className="sticky top-24">
+            <RightSidebar />
+          </div>
+        </aside>
       </main>
     </div>
   );

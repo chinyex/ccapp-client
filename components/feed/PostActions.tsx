@@ -1,26 +1,26 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  Heart,
-  MessageCircle,
-  Share,
-} from "lucide-react";
+import { Heart, MessageCircle, Share } from "lucide-react";
 
-import { Post } from "@/types/post";
+import type { Post } from "@/types/post";
 
 type PostActionsProps = {
   post: Post;
   liked: boolean;
   likes: number;
+  comments: number;
+  commentsOpen: boolean;
   onLike: () => void;
+  onComment: () => void;
 };
-
 export default function PostActions({
   post,
   liked,
   likes,
+  comments,
   onLike,
+  onComment,
 }: PostActionsProps) {
   return (
     <div className="mt-5">
@@ -46,7 +46,7 @@ export default function PostActions({
         </div>
 
         <div className="flex items-center gap-4 text-sm font-medium text-slate-600">
-          <span>{post.comments} Comments</span>
+          <span>{comments} Comments</span>
           <span>{post.shares} Shares</span>
         </div>
       </div>
@@ -65,9 +65,7 @@ export default function PostActions({
               scale: liked ? [1, 1.35, 1] : 1,
               rotate: liked ? [0, -10, 10, 0] : 0,
             }}
-            transition={{
-              duration: 0.3,
-            }}
+            transition={{ duration: 0.3 }}
           >
             <Heart
               size={20}
@@ -80,6 +78,7 @@ export default function PostActions({
 
         {/* Comment */}
         <button
+          onClick={onComment}
           className="
             flex
             items-center
@@ -98,7 +97,6 @@ export default function PostActions({
           "
         >
           <MessageCircle size={20} />
-
           Comment
         </button>
 
@@ -122,7 +120,6 @@ export default function PostActions({
           "
         >
           <Share size={20} />
-
           Share
         </button>
       </div>

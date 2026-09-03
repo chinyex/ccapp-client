@@ -4,12 +4,14 @@ import SponsoredCard from "./SponsoredCard";
 
 export default function RightSidebar() {
   return (
-    <aside className="w-80 space-y-6">
-      <SponsoredCard />
+    <aside className="w-80">
+      <div className="space-y-6">
+        <SponsoredCard />
 
-      <Birthdays />
+        <Birthdays />
 
-      <Contacts />
+        <Contacts />
+      </div>
     </aside>
   );
 }

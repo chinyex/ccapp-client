@@ -17,36 +17,12 @@ import {
 import Avatar from "@/components/ui/Avatar";
 
 const mobileLinks = [
-  {
-    label: "Feed",
-    href: "/feed",
-    icon: Home,
-  },
-  {
-    label: "Profile",
-    href: "/profile",
-    icon: User,
-  },
-  {
-    label: "Communities",
-    href: "/communities",
-    icon: Users,
-  },
-  {
-    label: "Messages",
-    href: "/messages",
-    icon: MessageCircle,
-  },
-  {
-    label: "Notifications",
-    href: "/notifications",
-    icon: Bell,
-  },
-  {
-    label: "Settings",
-    href: "/settings",
-    icon: Settings,
-  },
+  { label: "Feed", href: "/feed", icon: Home },
+  { label: "Profile", href: "/profile", icon: User },
+  { label: "Communities", href: "/communities", icon: Users },
+  { label: "Messages", href: "/messages", icon: MessageCircle },
+  { label: "Notifications", href: "/notifications", icon: Bell },
+  { label: "Settings", href: "/settings", icon: Settings },
 ];
 
 export default function AppNavbar() {
@@ -54,12 +30,25 @@ export default function AppNavbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-slate-200 bg-white">
+      <header
+        className="
+          fixed
+          inset-x-0
+          top-0
+          z-50
+          border-b
+          border-slate-200/70
+          bg-white/85
+          shadow-sm
+          backdrop-blur-xl
+          supports-[backdrop-filter]:bg-white/75
+        "
+      >
         <div className="mx-auto flex h-16 max-w-7xl items-center px-4">
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu */}
           <button
             onClick={() => setIsMenuOpen(true)}
-            className="rounded-lg p-2 hover:bg-slate-100 md:hidden text-black"
+            className="rounded-lg p-2 text-black transition hover:bg-slate-100 md:hidden"
           >
             <Menu className="h-6 w-6" />
           </button>
@@ -73,37 +62,75 @@ export default function AppNavbar() {
           </Link>
 
           {/* Search */}
-          <div className="mx-8 hidden flex-1 md:flex">
-            <div className="flex w-full max-w-md items-center gap-3 rounded-full bg-slate-100 px-4 py-2">
+          <div className="mx-10 hidden flex-1 lg:flex">
+            <div
+              className="
+                flex
+                w-full
+                max-w-lg
+                items-center
+                gap-3
+                rounded-full
+                border
+                border-slate-200
+                bg-slate-50
+                px-5
+                py-3
+                transition-all
+                duration-300
+                focus-within:border-blue-500
+                focus-within:bg-white
+                focus-within:shadow-lg
+              "
+            >
               <Search className="h-5 w-5 text-slate-500" />
 
               <input
                 type="text"
-                placeholder="Search people, posts..."
-                className="w-full bg-transparent outline-none"
+                placeholder="Search people, posts, communities..."
+                className="
+                  w-full
+                  bg-transparent
+                  text-sm
+                  text-slate-900
+                  placeholder:text-slate-500
+                  outline-none
+                "
               />
             </div>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="ml-auto hidden items-center gap-6 md:flex">
+          <nav className="ml-auto hidden items-center gap-3 md:flex">
             <Link href="/feed">
-              <Home className="h-6 w-6 cursor-pointer text-slate-600 transition hover:text-blue-600" />
+              <div className="rounded-xl p-2.5 transition-all duration-200 hover:bg-blue-50 hover:text-blue-600 active:scale-95">
+                <Home className="h-6 w-6 text-slate-600" />
+              </div>
             </Link>
 
             <Link href="/communities">
-              <Users className="h-6 w-6 cursor-pointer text-slate-600 transition hover:text-blue-600" />
+              <div className="rounded-xl p-2.5 transition-all duration-200 hover:bg-blue-50 hover:text-blue-600 active:scale-95">
+                <Users className="h-6 w-6 text-slate-600" />
+              </div>
             </Link>
 
             <Link href="/messages">
-              <MessageCircle className="h-6 w-6 cursor-pointer text-slate-600 transition hover:text-blue-600" />
+              <div className="rounded-xl p-2.5 transition-all duration-200 hover:bg-blue-50 hover:text-blue-600 active:scale-95">
+                <MessageCircle className="h-6 w-6 text-slate-600" />
+              </div>
             </Link>
 
             <Link href="/notifications">
-              <Bell className="h-6 w-6 cursor-pointer text-slate-600 transition hover:text-blue-600" />
+              <div className="relative rounded-xl p-2.5 transition-all duration-200 hover:bg-blue-50 active:scale-95">
+                <Bell className="h-6 w-6 text-slate-600" />
+
+                <span className="absolute right-2 top-2 h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-white" />
+              </div>
             </Link>
 
-            <Avatar name="Obiakor Chinenye" size="sm" />
+            <div className="cursor-pointer rounded-full transition hover:scale-105">
+              <Avatar name="Obiakor Chinenye" size="sm" />
+            </div>
           </nav>
 
           {/* Mobile Avatar */}
@@ -116,20 +143,18 @@ export default function AppNavbar() {
       {/* Mobile Drawer */}
       {isMenuOpen && (
         <>
-          {/* Overlay */}
           <div
             className="fixed inset-0 z-40 bg-black/40"
             onClick={() => setIsMenuOpen(false)}
           />
 
-          {/* Drawer */}
           <aside className="fixed left-0 top-0 z-50 flex h-full w-80 flex-col border-r border-slate-200 bg-white shadow-2xl">
             <div className="flex items-center justify-between border-b p-5">
               <h2 className="text-xl font-bold text-blue-600">CCApp</h2>
 
               <button
                 onClick={() => setIsMenuOpen(false)}
-               className="rounded-full p-2 transition hover:bg-slate-100"
+                className="rounded-full p-2 transition hover:bg-slate-100"
               >
                 <X className="h-6 w-6" />
               </button>
@@ -155,9 +180,9 @@ export default function AppNavbar() {
                   onClick={() => setIsMenuOpen(false)}
                   className="group mb-2 flex items-center gap-4 rounded-2xl px-4 py-4 transition-all duration-200 hover:bg-blue-50"
                 >
-                  <Icon className="h-6 w-6 text-slate-700 transition-colors duration-200 group-hover:text-blue-600" />
+                  <Icon className="h-6 w-6 text-slate-700 transition group-hover:text-blue-600" />
 
-                  <span className="text-[16px] font-semibold tracking-tight text-slate-900 transition-colors duration-200 group-hover:text-blue-600">
+                  <span className="text-[16px] font-semibold text-slate-900 group-hover:text-blue-600">
                     {label}
                   </span>
                 </Link>

@@ -1,7 +1,11 @@
 import Image from "next/image";
-import { Ellipsis, Globe, BadgeCheck } from "lucide-react";
+import {
+  BadgeCheck,
+  Ellipsis,
+  Globe,
+} from "lucide-react";
 
-import { Post } from "@/types/post";
+import type { Post } from "@/types/post";
 
 type PostHeaderProps = {
   post: Post;
@@ -13,22 +17,22 @@ export default function PostHeader({
   return (
     <header className="flex items-start justify-between">
       {/* Left */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-4">
         {/* Avatar */}
-        <div className="relative h-12 w-12 overflow-hidden rounded-full">
+        <div className="relative h-14 w-14 overflow-hidden rounded-full ring-2 ring-slate-100 transition-all duration-300 hover:ring-blue-200">
           <Image
             src={post.author.avatar}
             alt={post.author.name}
             fill
-            sizes="48px"
+            sizes="56px"
             className="object-cover"
           />
         </div>
 
         {/* User Info */}
-        <div className="space-y-1">
-          <div className="flex items-center gap-1">
-            <h3 className="text-[15px] font-semibold text-slate-900">
+        <div>
+          <div className="flex items-center gap-2">
+            <h3 className="text-base font-bold tracking-tight text-slate-900">
               {post.author.name}
             </h3>
 
@@ -40,11 +44,11 @@ export default function PostHeader({
             )}
           </div>
 
-          <p className="text-sm font-medium text-slate-700">
+          <p className="mt-0.5 text-sm font-medium text-slate-600">
             {post.author.title}
           </p>
 
-          <div className="flex items-center gap-1 text-xs font-medium text-slate-500">
+          <div className="mt-1 flex items-center gap-1 text-xs font-medium text-slate-500">
             <span>{post.time}</span>
 
             <span>•</span>
@@ -58,11 +62,13 @@ export default function PostHeader({
       <button
         className="
           rounded-full
-          p-2
-          text-slate-600
-          transition
+          p-2.5
+          text-slate-500
+          transition-all
+          duration-200
           hover:bg-slate-100
           hover:text-slate-900
+          active:scale-95
         "
       >
         <Ellipsis size={22} />

@@ -6,19 +6,38 @@ import ContactItem from "./ContactItem";
 
 export default function Contacts() {
   return (
-    <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+    <section
+      className="
+        rounded-3xl
+        border
+        border-slate-200
+        bg-white
+        p-5
+        shadow-sm
+        transition-all
+        duration-300
+        hover:shadow-lg
+      "
+    >
       {/* Header */}
       <div className="mb-5 flex items-center justify-between">
-        <h2 className="text-lg font-bold tracking-tight text-slate-900">
-          Contacts
-        </h2>
+        <div>
+          <h2 className="text-lg font-bold text-slate-900">
+            Contacts
+          </h2>
+
+          <p className="mt-1 text-sm text-slate-500">
+            {contacts.length} friends online
+          </p>
+        </div>
 
         <button
           className="
             rounded-full
             p-2
-            text-slate-600
-            transition
+            text-slate-500
+            transition-all
+            duration-300
             hover:bg-slate-100
             hover:text-slate-900
           "
@@ -27,10 +46,13 @@ export default function Contacts() {
         </button>
       </div>
 
-      {/* Contact List */}
-      <div className="space-y-1">
+      {/* Contacts */}
+      <div className="space-y-2">
         {contacts.map((contact) => (
-          <ContactItem key={contact.id} contact={contact} />
+          <ContactItem
+            key={contact.id}
+            contact={contact}
+          />
         ))}
       </div>
     </section>

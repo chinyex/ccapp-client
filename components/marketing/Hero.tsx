@@ -1,54 +1,55 @@
 import Button from "@/components/ui/Button";
-import Badge from "@/components/ui/Badge";
+import Link from "next/link";
 
 import Container from "../ui/Container";
-import HeroPreview from "./HeroPreview";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-white">
-      {/* Background Blobs */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute left-0 top-10 h-72 w-72 rounded-full bg-blue-300/20 blur-3xl" />
+    <section className="min-h-[calc(100vh-80px)] bg-gradient-to-br from-slate-50 via-blue-50 to-white">
+      <Container className="mx-auto flex min-h-[calc(100vh-80px)] max-w-7xl items-center justify-center px-6 py-20">
+        <div className="max-w-3xl text-center">
 
-        <div className="absolute right-0 top-40 h-96 w-96 rounded-full bg-cyan-300/20 blur-3xl" />
+          {/* Small Brand Mark */}
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-600 shadow-lg">
+            <span className="text-2xl font-black text-white">
+              CC
+            </span>
+          </div>
 
-        <div className="absolute bottom-0 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-indigo-300/20 blur-3xl" />
-      </div>
-
-      {/* Main Content */}
-      <Container className="mx-auto flex min-h-[calc(100vh-80px)] max-w-7xl flex-col items-center justify-between gap-16 px-6 py-20 lg:flex-row">
-        {/* Left */}
-        <div className="max-w-2xl">
-          <Badge>✨ The Future of Social Connection</Badge>
-
-          <h1 className="mt-6 text-5xl font-extrabold leading-tight text-slate-900 lg:text-7xl">
-            Build Meaningful
-            <br />
-            Connections
-            <br />
-            Without Limits.
+          {/* Heading */}
+          <h1 className="mt-8 text-5xl font-black tracking-tight text-slate-900 sm:text-6xl lg:text-7xl">
+            Welcome to CCApp
           </h1>
 
-          <p className="mt-8 text-lg leading-8 text-slate-600">
-            Join communities, share your moments, discover amazing people, and
-            build meaningful relationships on a modern social platform designed
-            for everyone.
+          {/* Tagline */}
+          <p className="mt-6 text-2xl font-semibold text-blue-600 sm:text-3xl">
+            Connect. Share. Belong.
           </p>
 
-          <div className="mt-10 flex flex-wrap gap-4">
-            <Button size="lg">Get Started</Button>
+          {/* Description */}
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600">
+            A simple place to connect with people, share your
+            moments, and build meaningful relationships.
+          </p>
 
-            <Button variant="outline" size="lg">
-              Learn More
-            </Button>
+          {/* Buttons */}
+          <div className="mt-10 flex flex-wrap justify-center gap-4">
+            <Link href="/register">
+              <Button size="lg">
+                Get Started
+              </Button>
+            </Link>
+
+            <Link href="/login">
+              <Button
+                variant="outline"
+                size="lg"
+              >
+                Login
+              </Button>
+            </Link>
           </div>
-        </div>
 
-        {/* Right */}
-        {/* Right */}
-        <div className="flex w-full justify-center">
-          <HeroPreview />
         </div>
       </Container>
     </section>

@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 
-import { Post } from "@/types/post";
+import type { PostComment } from "@/types/comment";
+import type { Post } from "@/types/post";
 
 import PostActions from "./PostActions";
 import PostBody from "./PostBody";
+import PostComments from "./PostComments";
 import PostHeader from "./PostHeader";
 
 type PostCardProps = {
@@ -18,7 +20,13 @@ export default function PostCard({
   const [liked, setLiked] = useState(post.liked);
   const [likes, setLikes] = useState(post.likes);
 
-  function handleLike() {
+  const [comments, setComments] = useState<PostComment[]>(
+    post.commentsList
+  );
+
+  const [showComments, setShowComments] = useState(false);
+
+  const handleLike = () => {
     if (liked) {
       setLiked(false);
       setLikes((prev) => prev - 1);
@@ -26,7 +34,26 @@ export default function PostCard({
       setLiked(true);
       setLikes((prev) => prev + 1);
     }
-  }
+  };
+
+  const handleToggleComments = () => {
+    setShowComments((prev) => !prev);
+  };
+
+  const handleAddComment = (content: string) => {
+    const newComment: PostComment = {
+      id: Date.now().toString(),
+      author: {
+        id: "current-user",
+        name: "You",
+        avatar: "/images/users/user-1.png",
+      },
+      content,
+      createdAt: "Just now",
+    };
+
+    setComments((prev) => [...prev, newComment]);
+  };
 
   return (
     <article
@@ -47,12 +74,21 @@ export default function PostCard({
 
       <PostBody post={post} />
 
-      <PostActions
-        post={post}
-        liked={liked}
-        likes={likes}
-        onLike={handleLike}
-      />
+<PostActions
+  post={post}
+  liked={liked}
+  likes={likes}
+  comments={comments.length}
+  commentsOpen={showComments}
+  onLike={handleLike}
+  onComment={handleToggleComments}
+/>
+      {showComments && (
+        <PostComments
+          comments={comments}
+          onAddComment={handleAddComment}
+        />
+      )}
     </article>
   );
 }

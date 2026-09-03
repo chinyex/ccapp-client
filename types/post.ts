@@ -1,3 +1,5 @@
+import { PostComment } from "./comment";
+
 export interface PostAuthor {
   id: string;
   name: string;
@@ -16,4 +18,6 @@ export interface Post {
   shares: number;
   time: string;
   liked: boolean;
+
+  commentsList: PostComment[];
 }
